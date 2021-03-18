@@ -19,6 +19,7 @@ class Player {
         this.speed += this.gravity;
         this.y += this.speed;
         if (this.y > Ground.y - 210 - this.height / 2) {
+            
             this.speed = 0;
             this.y = Ground.y + 1 - 210 - this.height / 2;
             Game.Status = 0;
