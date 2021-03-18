@@ -1,13 +1,13 @@
 class Player {
-    constructor() {
+    constructor(X, Y) {
         this.height = 80
         this.width = 80
-        this.x = 100;
-        this.y = 600;
+        this.x = X;
+        this.y = Y;
 
         this.speed = 0;
-        this.gravity = 0.25;
-        this.jump = - 4.325;
+        this.gravity = 0.35;
+        this.jump = - 6.6;
     }
 
     Render() { //TODO - Top fix
@@ -16,10 +16,12 @@ class Player {
         ctx.beginPath();
         ctx.rect(this.x, this.y, this.width, this.height);
         ctx.drawImage(PlayerSkin, this.x, this.y - this.height, this.width, this.height)
-        this.speed += this.gravity;
-        this.y += this.speed;
+        if (Game.Status == true) {
+            this.Move();
+        }
+        
         if (this.y > Ground.y - 210 - this.height / 2) {
-            
+
             this.speed = 0;
             this.y = Ground.y + 1 - 210 - this.height / 2;
             Game.Status = 0;
@@ -31,7 +33,10 @@ class Player {
 
         }
     }
-
+    Move() {
+        this.speed += this.gravity;
+        this.y += this.speed;
+    }
     Jump() {
         this.speed = this.jump;
     }
