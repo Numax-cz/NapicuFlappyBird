@@ -2,10 +2,13 @@ const canvas = document.getElementById("canvas");
 const ctx = canvas.getContext("2d");
 const PlayerSkin = new Image();
 const GroundSkin = new Image();
-const PipeSkin = new Image();
+const PipeSkinBottom = new Image();
+const PipeSkinTop = new Image();
 PlayerSkin.src = 'jonanekxd.webp';
 GroundSkin.src = 'Ground.png';
-PipeSkin.src = 'Pipe.png';
+PipeSkinBottom.src = 'PipeBottom.png';
+PipeSkinTop.src = "PipeTop.png";
+
 var Hrac = new Player();
 const Zem = new Ground();
 const Trubka = new Pipe();
