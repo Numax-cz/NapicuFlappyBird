@@ -52,16 +52,20 @@ class Pipe {
     }
     Collision(Player) {
 
-        if (Player.x > (this.x - Player.width) && Player.x < (this.x + Pipe.width)) {
+        if (Player.x > (this.x - Player.width) && Player.x < (this.x + Pipe.width + Player.width)) {
 
-            if (Player.y < (this.y + Pipe.height) && Player.y > (this.y - Pipe.height)) {
-
-                Hrac.x = this.x - Player.width
-
+            
+            // Hrac.x = this.x - Pipe.width / 2 
+            
+            if ((Player.y - Player.height) < (this.y - this.y2)) {  //TOP
+                
             }
-
-
+            if (Player.y > (this.y - Pipe.height)) { //BOTTOM
+ 
+            }
         }
+        // if (Player.x > (this.x - Pipe.width / 2 ) && Player.x < (this.x + Pipe.width / 2 )) {
+        // }
     }
     Reset() {
         this.y = Pipe.RandomPipeBottom();
