@@ -8,8 +8,13 @@ class Player {
         this.speed = 0;
         this.gravity = 0.35;
         this.jump = - 6.6;
-    }
 
+        this.DefaultX = this.x;
+        this.DefaultY = this.y;
+        this.DefaultSpeed = this.speed;
+    }
+    
+    
     Render() { //TODO - Top fix
         ctx.fillStyle = "#70c5ce" //Barva pozadí
         ctx.fillRect(0, 0, okno.ln, okno.lp);
@@ -19,18 +24,14 @@ class Player {
         if (Game.Status == true) {
             this.Move();
         }
-        
         if (this.y > Ground.y - 210 - this.height / 2) {
-
-            this.speed = 0;
+            // this.speed = 0;
             this.y = Ground.y + 1 - 210 - this.height / 2;
-            Game.Status = 0;
+            // Game.GameOver();
         }
         if (this.y < this.height) {
             this.speed = 0;
             this.y = this.height;
-            Game.Status = 0
-
         }
     }
     Move() {
@@ -40,6 +41,7 @@ class Player {
     Jump() {
         this.speed = this.jump;
     }
+
 
 
 }
