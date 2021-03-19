@@ -15,7 +15,6 @@ const Zem = new Ground();
 
 const Trubka = new Pipe(600);
 const Trubka2 = new Pipe(1300);
-const Trubka3 = new Pipe(1900);
 
 
 
@@ -25,25 +24,58 @@ ctx.canvas.height = okno.lp;
 ctx.canvas.width = okno.ln;
 class Game {
     static Status = null;
-    static StatusPoint = null;
+    static StatusPoint = 0;
 
     Render() { //TODO - Top fix
         Hrac.Render();
+
         Trubka.Render();
         Trubka2.Render();
-
         Zem.Render();
+        Game.Score(Game.StatusPoint);
+        Trubka.Collision(Hrac);
+        Trubka2.Collision(Hrac);
 
-
+        Game.Debugger(Hrac);
     }
     static Restart() {
-        //TODO restart
+        Hrac.x = Hrac.DefaultX;
+        Hrac.y = Hrac.DefaultY;
+        Hrac.speed = Hrac.DefaultSpeed;
+        Trubka.x = Trubka.DefaultX;
+        Trubka2.x = Trubka2.DefaultX;
+        Pipe.Speed = 10; //Default
     }
     static Start() {
         Game.Status = true;
     }
     static Pause() {
         Game.Status = null;
+    }
+    static GameOver() {
+        this.Pause();
+        this.Restart();
+        Game.StatusPoint = 0;
+    }
+    static Score(value) {
+        ctx.fillStyle = '#FFF'
+        ctx.strokeStyle = '#000'
+        ctx.lineWidth = 2;
+        ctx.font = "85px Teko";
+        ctx.fillText(value, (okno.ln/2) - 25, 70);
+        ctx.strokeText(value, (okno.ln/2) - 25, 70);
+    }
+    static Debugger(value) {
+        ctx.fillStyle = '#FFF'
+        ctx.strokeStyle = '#000'
+        ctx.lineWidth = 2;
+        ctx.font = "45px Teko";
+        ctx.fillText("y " + Math.floor(value.y), 10, 50);
+        
+
+
+
+      
     }
 
 
