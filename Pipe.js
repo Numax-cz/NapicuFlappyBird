@@ -4,16 +4,16 @@ class Pipe {
         this.x = x;
         this.y = Pipe.RandomPipeBottom();
         this.y2 = Pipe.RandomPipeTop();
-
         this.DefaultX = this.x;
     }
-
-
     static height = 800;
     static width = 200;
-    static Speed = 10
-    //static x = 600;
+    static Speed = 10;
+    static SpeedPlus = 0.05;
+    static DefaultSpeed = Pipe.Speed;
+    static DefaultSpeedPlus = Pipe.SpeedPlus;
 
+    //static x = 600;
     //800 -rn
     //1000 - min
     //1300 - max
@@ -41,7 +41,7 @@ class Pipe {
         if ((this.x + Pipe.width + 20) < 0) {
             this.x = okno.ln;
             this.Reset();
-            Pipe.Speed += 0.05
+            Pipe.Speed += Pipe.SpeedPlus;
             Game.StatusPoint += 1
         }
 
@@ -51,26 +51,18 @@ class Pipe {
         this.x -= Pipe.Speed;
     }
     Collision(Player) {
-
+        //Kolize v1.0
         if (Player.x > (this.x - Player.width) && Player.x < (this.x + Pipe.width + Player.width)) {
-
-            
-            // Hrac.x = this.x - Pipe.width / 2 
-            
             if ((Player.y - Player.height) < (this.y - this.y2)) {  //TOP
-                
+                Game.GameOver();
             }
             if (Player.y > (this.y - Pipe.height)) { //BOTTOM
- 
+                Game.GameOver();
             }
         }
-        // if (Player.x > (this.x - Pipe.width / 2 ) && Player.x < (this.x + Pipe.width / 2 )) {
-        // }
     }
     Reset() {
         this.y = Pipe.RandomPipeBottom();
         this.y2 = Pipe.RandomPipeTop();
     }
-
-
 }
