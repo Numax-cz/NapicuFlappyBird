@@ -28,15 +28,12 @@ class Game {
 
     Render() { //TODO - Top fix
         Hrac.Render();
-
         Trubka.Render();
         Trubka2.Render();
         Zem.Render();
         Game.Score(Game.StatusPoint);
         Trubka.Collision(Hrac);
         Trubka2.Collision(Hrac);
-
-        Game.Debugger(Hrac);
     }
     static Restart() {
         Hrac.x = Hrac.DefaultX;
@@ -44,7 +41,8 @@ class Game {
         Hrac.speed = Hrac.DefaultSpeed;
         Trubka.x = Trubka.DefaultX;
         Trubka2.x = Trubka2.DefaultX;
-        Pipe.Speed = 10; //Default
+        Pipe.Speed = Pipe.DefaultSpeed; 
+        Pipe.SpeedPlus = Pipe.DefaultSpeedPlus;
     }
     static Start() {
         Game.Status = true;
@@ -70,15 +68,8 @@ class Game {
         ctx.strokeStyle = '#000'
         ctx.lineWidth = 2;
         ctx.font = "45px Teko";
-        ctx.fillText("y " + Math.floor(value.y), 10, 50);
-        
-
-
-
-      
+        ctx.fillText("y " + Math.floor(value.y), 10, 50); 
     }
-
-
 }
 
 const game = new Game();
@@ -95,7 +86,18 @@ function Render() {
     game.Render();
     requestAnimationFrame(Render);
 }
-Render(); //TODO Podmínku (Načtení img)
+
+window.onload = function () {
+    if (navigator.userAgent.toLowerCase().match(/mobile/i)) {
+        //todo mobile 
+ 
+    } else {
+        Render();     
+ 
+    }
+}
+
+
 
 
 window.addEventListener("keydown", e => {
