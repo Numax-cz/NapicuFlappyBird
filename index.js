@@ -4,10 +4,12 @@ const PlayerSkin = new Image();
 const GroundSkin = new Image();
 const PipeSkinBottom = new Image();
 const PipeSkinTop = new Image();
-PlayerSkin.src = 'jonanekxd.webp';
-GroundSkin.src = 'Ground.png';
-PipeSkinBottom.src = 'PipeBottom.png';
-PipeSkinTop.src = "PipeTop.png";
+const JumpSound = new Audio("./Sounds/Jump.wav");
+const GameOverSound = new Audio("./Sounds/GameOver.wav")
+PlayerSkin.src = './Img/jonanekxd.webp';
+GroundSkin.src = './Img/Ground.webp';
+PipeSkinBottom.src = './Img/PipeBottom.webp';
+PipeSkinTop.src = "./Img/PipeTop.webp";
 
 var Hrac = new Player(100, 600);
 const Zem = new Ground();
@@ -41,7 +43,7 @@ class Game {
         Hrac.speed = Hrac.DefaultSpeed;
         Trubka.x = Trubka.DefaultX;
         Trubka2.x = Trubka2.DefaultX;
-        Pipe.Speed = Pipe.DefaultSpeed; 
+        Pipe.Speed = Pipe.DefaultSpeed;
         Pipe.SpeedPlus = Pipe.DefaultSpeedPlus;
     }
     static Start() {
@@ -53,6 +55,8 @@ class Game {
     static GameOver() {
         this.Pause();
         this.Restart();
+        GameOverSound.volume = 0.5;
+        GameOverSound.play();
         Game.StatusPoint = 0;
     }
     static Score(value) {
@@ -60,15 +64,19 @@ class Game {
         ctx.strokeStyle = '#000'
         ctx.lineWidth = 2;
         ctx.font = "85px Teko";
-        ctx.fillText(value, (okno.ln/2) - 25, 70);
-        ctx.strokeText(value, (okno.ln/2) - 25, 70);
+        ctx.fillText(value, (okno.ln / 2) - 25, 70);
+        ctx.strokeText(value, (okno.ln / 2) - 25, 70);
     }
     static Debugger(value) {
         ctx.fillStyle = '#FFF'
         ctx.strokeStyle = '#000'
         ctx.lineWidth = 2;
         ctx.font = "45px Teko";
-        ctx.fillText("y " + Math.floor(value.y), 10, 50); 
+        ctx.fillText("y " + Math.floor(value.y), 10, 50);
+    }
+    static JumpSound() {
+        JumpSound.volume = 0.5;
+        JumpSound.play();
     }
 }
 
@@ -90,10 +98,10 @@ function Render() {
 window.onload = function () {
     if (navigator.userAgent.toLowerCase().match(/mobile/i)) {
         //todo mobile 
- 
+
     } else {
-        Render();     
- 
+        Render();
+
     }
 }
 
@@ -104,6 +112,7 @@ window.addEventListener("keydown", e => {
     if (e.keyCode == 32) {
         Hrac.Jump();
         Game.Start();
+        Game.JumpSound();
     } else if (e.keyCode == 27) {
         Game.Pause();
     }
