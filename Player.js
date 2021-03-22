@@ -9,6 +9,7 @@ class Player {
         this.gravity = 0.35;
         this.jump = - 6.6;
 
+        
         this.DefaultX = this.x;
         this.DefaultY = this.y;
         this.DefaultSpeed = this.speed;
@@ -25,13 +26,12 @@ class Player {
             this.Move();
         }
         if (this.y > Ground.y - 210 - this.height / 2) {
-            // this.speed = 0;
-            this.y = Ground.y + 1 - 210 - this.height / 2;
-            // Game.GameOver();
+            this.speed = 0;
+            Game.GameOver();
         }
         if (this.y < this.height) {
             this.speed = 0;
-            this.y = this.height;
+            Game.GameOver();
         }
     }
     Move() {
