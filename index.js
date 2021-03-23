@@ -86,6 +86,7 @@ window.onload = function () {
         document.getElementById("Mobile").style.display = "table";
         canvas.style.display = "none";
     } else {
+        document.getElementById("Loading").style.display = "none";
         Render();
 
     }
