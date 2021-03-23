@@ -28,7 +28,6 @@ class Pipe {
         return Math.floor(Math.random() * (1300 - 1000) + 1000);
     }
     Render() {
-
         ctx.beginPath();
         ctx.rect(this.x, this.y, Pipe.width, Pipe.height);
         ctx.drawImage(PipeSkinBottom, this.x, this.y - Pipe.height, Pipe.width, Pipe.height);
@@ -44,7 +43,6 @@ class Pipe {
             Pipe.Speed += Pipe.SpeedPlus;
             Game.StatusPoint += 1
         }
-
     }
 
     Move() {
