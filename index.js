@@ -10,17 +10,10 @@ PlayerSkin.src = './Img/jonanekxd.webp';
 GroundSkin.src = './Img/Ground.webp';
 PipeSkinBottom.src = './Img/PipeBottom.webp';
 PipeSkinTop.src = "./Img/PipeTop.webp";
-
 var Hrac = new Player(100, 600);
 const Zem = new Ground();
-
-
 const Trubka = new Pipe(600);
 const Trubka2 = new Pipe(1300);
-
-
-
-
 
 ctx.canvas.height = okno.lp;
 ctx.canvas.width = okno.ln;
@@ -72,7 +65,7 @@ class Game {
         ctx.strokeStyle = '#000'
         ctx.lineWidth = 2;
         ctx.font = "45px Teko";
-        ctx.fillText("y " + Math.floor(value.y), 10, 50);
+        ctx.fillText("y " + Math.floor(value), 10, 50);
     }
     static JumpSound() {
         JumpSound.volume = 0.5;
@@ -83,22 +76,15 @@ class Game {
 const game = new Game();
 
 
-
-
-
-
-
 function Render() {
-
-
     game.Render();
     requestAnimationFrame(Render);
 }
 
 window.onload = function () {
     if (navigator.userAgent.toLowerCase().match(/mobile/i)) {
-        //todo mobile 
-
+        document.getElementById("Mobile").style.display = "table";
+        canvas.style.display = "none";
     } else {
         Render();
 
